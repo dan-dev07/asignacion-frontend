@@ -1,0 +1,341 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Login_loginPage {
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #030c45;
+  padding-top: 100px;
+}
+
+.Login_loginCaja {
+  margin: auto;
+  top: 200px;
+  max-width: 300px;
+
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.Login_cajaLogo {
+  text-align: center;
+}
+
+.Login_logo {
+  width: fit-content;
+  margin-top: 10px;
+}
+
+.Login_input {
+  padding: 10px;
+}
+
+.Login_input {
+  padding: 10px;
+}
+
+.Login_submit {
+  padding: 10px;
+  text-align: center;
+}
+
+.logout {
+  color: dimgrey;
+
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: crimson;
+
+}
+
+.inputErr {
+  border: 1px solid red;
+}
+
+
+/* ChatComponent.css */
+.fondo {
+  background-image: url('./assets/whatsapp-background.jpg');
+}
+
+.chat-container {
+  width: 60vw;
+  height: 90vh;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.chat-header {
+  /* background-color: #007bff; */
+  background-color: transparent;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3px;
+}
+
+.message {
+  margin: 2px 0;
+  padding: 5px;
+  border-radius: 8px;
+  max-width: 80%;
+  overscroll-behavior-y: contain;
+}
+
+.message.Escotel {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  right: 10px;
+}
+
+.message.Externo {
+  background-color: #fff;
+  align-self: flex-start;
+  right: 10px;
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
+}
+
+.file {
+  height: fit-content;
+  padding: 5px;
+}
+
+/* -------------------- */
+/* modal compartir */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+button {
+  /* margin: 5px; */
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-button {
+  background: red;
+  color: white;
+}
+
+/* AudioPlayer.css */
+
+/* Contenedor principal */
+.audio-player-container {
+  margin-top: 20px;
+  width: fit-content;
+}
+
+/* Estilo para el botón de reproducción de sonido */
+.audio-player-container button{
+  font-size: 20px;
+}
+
+.play-button {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 20px;
+}
+
+/* estilos para el icono */
+.play-button .icon {
+  margin-right: 8px;
+  font-size: 40px;
+}
+
+.audio-player {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+/* Video player */
+.video-player-container{
+  width: fit-content;
+}
+
+.video-player{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+/* Detalles de contacto - Perfil */
+.contact-view {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: auto;
+  font-family: Arial, sans-serif;
+}
+
+.contact-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.contact-status {
+  font-size: 14px;
+  color: #666;
+}
+
+.contact-phone {
+  margin-bottom: 20px;
+}
+
+.contact-phone h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+.contact-phone p {
+  font-size: 16px;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.action-btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.call-btn {
+  background-color: #34b7f1; /* Azul de WhatsApp para llamada */
+  color: white;
+  border: none;
+}
+
+.message-btn {
+  background-color: #25d366; /* Verde de WhatsApp para mensaje */
+  color: white;
+  border: none;
+}
+
+.action-btn:hover {
+  opacity: 0.8;
+}
+
+.more-options {
+  text-align: center;
+}
+
+.more-options-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.more-options-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Botón para el final del chat */
+.fixed-button {
+  rotate: 90deg;
+  width: 10px;
+  
+}
+
+.fixed-button:hover {
+  background-color: #0056b3;
+}
+
+/*  */
+.color-id{
+  border:5px solid #ddffe0;
+}
+
+/* Detalle contacto información */
+.detalle-contacto{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
