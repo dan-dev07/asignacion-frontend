@@ -1,5 +1,5 @@
 import logo from "../assets/LogoFull.jpeg";
-import logoSmall from "../assets/LogoSmall.jpeg";
+import logoSmall from "../assets/LogoSmall.png";
 
 export default function Logo({ collapsed }) {
   const texto = collapsed ? (

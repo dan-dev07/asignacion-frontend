@@ -1,7 +1,6 @@
-import { UserOutlined } from "@ant-design/icons";
-import { Tooltip } from "antd";
-import React from "react";
 import { useSelector } from "react-redux";
+import { Tooltip } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 export const User = ({ collapsed }) => {
   const { user } = useSelector((state) => state.userReducer);

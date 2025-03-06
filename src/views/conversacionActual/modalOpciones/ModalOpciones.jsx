@@ -27,7 +27,7 @@ export const ModalOpciones = ({ mensaje, setOpen }) => {
       <Button onClick={onClickReenviar}>
         Reenviar
       </Button>
-      <Button onClick={() => console.log('Fijar')}>
+      <Button onClick={() => {}}>
         Fijar
       </Button>
       <ModalReenviar open={openModalReenviar} setOpen={setOpenModalReenviar}/>

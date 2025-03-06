@@ -19,7 +19,6 @@ export const ModalAgregar = ({open, setOpen, datosExterno}) => {
   }, [datosExterno, telefono]);
   
   const onClickOk =()=>{
-    console.log(formValidation);
     if (!isFormValid()) {
       setMessageError(true);
       return;
