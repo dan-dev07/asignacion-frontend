@@ -28,6 +28,7 @@ export const EnviarMensaje = ({}) => {
     if (mensaje.length === 0) {
       return;
     };
+
     socket.emit('mensaje-enviado', {
       telefono,
       fecha: formatoFecha(),

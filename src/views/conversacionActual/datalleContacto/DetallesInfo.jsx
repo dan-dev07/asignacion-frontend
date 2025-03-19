@@ -29,18 +29,6 @@ export const DetallesInfo = ({ contact }) => {
         </div>
       </div>
 
-      {/* 
-      <div className="contact-phone">
-        <h3>Teléfono</h3>
-        <p>{contact.phoneNumber}</p>
-      </div>
-
-      <div className="actions">
-        <button className="action-btn call-btn">Llamar</button>
-        <button className="action-btn message-btn">Enviar mensaje</button>
-      </div> 
-      */}
-
       <div className="more-options">
         <button className="more-options-btn">Más opciones</button>
       </div>

@@ -20,5 +20,5 @@ export const formValidationsUsuarios = {
   nombre: [(value) => value?.length >= 3 || value === '', 'Mínimo 3 caracteres'],
   apellido: [(value) => value.length >= 1 || value === '', 'Necesito este campo'],
   empresa: [(value) => value.length >= 1 || value === '', 'Mínimo 5 caracteres'],
-  telefono:[(value) => value.length === 10 && esSoloNumero(value),'10 números']
+  telefono:[(value) => (value.length === 10 || value.length === 12) && esSoloNumero(value),'10 números']
  }

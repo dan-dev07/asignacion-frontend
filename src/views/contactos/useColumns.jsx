@@ -1,17 +1,36 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 import { WechatFilled } from '@ant-design/icons';
+import { Button } from 'antd';
+import { SocketContext } from '../../context/SocketContext';
+import { setNotificacion } from '../../store/slices/notificacion/notificiacionSlice';
+import { creaNotificacion } from '../../utils/creaNotificacion';
 
 export const useColumns = () => {
+  const dispatch = useDispatch();
+  const {socket} = useContext(SocketContext);
   const navigate = useNavigate();
 
-  const onClick = (record) => {
+  const onClickConversar = (record) => {
     navigate(`/conversacionActual/${record.telefono}`);
+  };
+
+  const onClickEnviarPlantilla = (record) => {
+    const {telefono, uid} = record;
+    socket.emit('enviar-template', {telefono, uid}, (res) => {
+      if (res.ok) {
+        dispatch(setNotificacion(creaNotificacion('success', 'Mensaje Inicial envido')));
+      } else {
+        dispatch(setNotificacion(creaNotificacion('error', 'Mensaje no enviado')));
+      };
+    });
   };
 
   const columns = [
     {
       title: 'Externo',
-      dataIndex:'datosExterno',
+      dataIndex: 'datosExterno',
       key: 'uid',
       sorter: (a, b) => {
         const nombreA = a.datosExterno.nombre;
@@ -23,8 +42,19 @@ export const useColumns = () => {
         const { telefono, datosExterno: { nombre, apellido } } = record;
         return <>
           {nombre && <p> {`${nombre} ${apellido}`} </p>}
-          {telefono && <p> {`${telefono}`} </p>}
+          {telefono && <p> {`${telefono.slice(-10)}`} </p>}
         </>
+      }
+    },
+    {
+      title: 'Enviar Plantilla',
+      dataIndex: '',
+      key: 'uid',
+      render: (text, record, index) => {
+        const { telefono, datosExterno: { nombre, apellido } } = record;
+        return <Button
+          onClick={()=>onClickEnviarPlantilla(record)}
+        > Plantilla </Button>
       }
     },
     {
@@ -63,7 +93,7 @@ export const useColumns = () => {
         return <span
           style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', gap: 5 }}
           onClick={() => {
-            onClick(record);
+            onClickConversar(record);
           }} >
           <WechatFilled style={{ fontSize: 20, }} />
           Conversar

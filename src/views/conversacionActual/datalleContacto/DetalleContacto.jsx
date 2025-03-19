@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Button, Col, Flex, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { ModalAgregar } from './modalAgregar/ModalAgregar';
+import { ModalEditar } from './modalEditar/ModalEditar';
+
 
 export const DetalleContacto = ({ telefono}) => {
   const [openContacto, setopenContacto] = useState(false);
@@ -34,7 +34,7 @@ export const DetalleContacto = ({ telefono}) => {
           Editar
         </Button>
       </Col>
-      <ModalAgregar open={openContacto} setOpen={setopenContacto} datosExterno={datosContacto} telefono={telefono} />
+      <ModalEditar open={openContacto} setOpen={setopenContacto} datosExterno={datosContacto} telefono={telefono} />
     </Row>
 
   );

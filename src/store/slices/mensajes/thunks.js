@@ -50,6 +50,7 @@ export const startActualizarContacto =(form)=>{
     const res = await fetch('post',`${urlBase}/api/Datos/actualizarContacto`, form );
     if (res.ok) {
       dispatch(setDatosContacto(res.data));
+      dispatch(setNotificacion(creaNotificacion('success', 'Actualizado')));
     }else{
       dispatch(setNotificacion(creaNotificacion('error', 'No se actualizaron los datos')));
     }

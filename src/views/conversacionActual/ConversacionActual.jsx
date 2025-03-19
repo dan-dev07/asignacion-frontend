@@ -18,7 +18,7 @@ export const ConversacionActual = () => {
   if (loading) return <div style={{display:'flex', justifyContent:'center'}}><Spin /></div>
 
   return (
-    <div className='fondo' style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className='fondo' style={{ display: 'flex', justifyContent: 'center', alignItems:'center' ,height:'calc(100vh - 20px)' }}>
       <div className="chat-container">
         <div className="chat-header">
           <DetalleContacto telefono={telefono} />

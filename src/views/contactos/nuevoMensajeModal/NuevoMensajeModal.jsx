@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
-import { useFormContactos } from "../../../hooks/useFormContactos";
+import { useFormEnviarPlantilla } from "../../../hooks/useFormEnviarPlantilla";
 
 
 export const NuevoMensajeModal = ({open, setOpen}) => {
@@ -12,7 +12,7 @@ export const NuevoMensajeModal = ({open, setOpen}) => {
     isFormValid,
     handleSubmit,
     handleReset,
-    onChangeText} = useFormContactos();
+    onChangeText} = useFormEnviarPlantilla();
 
   const onClickOk =()=>{
     if (!isFormValid()) {

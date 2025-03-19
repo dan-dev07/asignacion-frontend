@@ -36,7 +36,7 @@ export const ModalAgregar = ({ open, setOpen }) => {
     <>
       <Modal title="Nuevo Usuario" open={open} onOk={handleOk} onCancel={handleCancel}>
         <Row gutter={[18, 6]}>
-          <Col md={12} sm={24}>
+          <Col md={12} xs={24}>
             <InputText
               placeholder={'Nombre del usuario'}
               name={'nombre'}
@@ -49,7 +49,7 @@ export const ModalAgregar = ({ open, setOpen }) => {
               error && <span style={{ fontSize: 12 }}>{formValidation.nombreValid}</span>
             }
           </Col>
-          <Col md={12} sm={24}>
+          <Col md={12} xs={24}>
             <InputText
               placeholder={'Correo electrónico'}
               name={'email'}
@@ -62,7 +62,7 @@ export const ModalAgregar = ({ open, setOpen }) => {
               error && <span style={{ fontSize: 12 }}>{formValidation.emailValid}</span>
             }
           </Col>
-          <Col md={12} sm={24}>
+          <Col md={12} xs={24}>
             <InputPassword
               placeholder={'Contraseña'}
               name={'password'}
@@ -76,12 +76,13 @@ export const ModalAgregar = ({ open, setOpen }) => {
             }
           </Col>
 
-          <Col md={12} sm={24}>
+          <Col md={12} xs={24}>
             <label >Roles</label>
             <Checkbox.Group
               options={optionsCheckInput}
               name='rol'
               onChange={(value) => onChangeChecked(value, 'rol')}
+              style={{display:'flex', flexDirection:'row'}}
               defaultValue={['']}
             />
             {
