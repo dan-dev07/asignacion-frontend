@@ -43,7 +43,7 @@ export const NuevoMensaje = () => {
         <Button type='primary' style={{margin:'5px 0'}}
           onClick={onClick}
         >
-          Nuevo Mensaje
+          Solicitar Nuevo Contacto
         </Button>
         <NuevoMensajeModal open={open} setOpen={setOpen}/>
       </Col>

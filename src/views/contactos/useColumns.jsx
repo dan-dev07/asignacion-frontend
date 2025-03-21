@@ -18,6 +18,7 @@ export const useColumns = () => {
 
   const onClickEnviarPlantilla = (record) => {
     const {telefono, uid} = record;
+    console.log(telefono);
     socket.emit('enviar-template', {telefono, uid}, (res) => {
       if (res.ok) {
         dispatch(setNotificacion(creaNotificacion('success', 'Mensaje Inicial envido')));
@@ -47,14 +48,14 @@ export const useColumns = () => {
       }
     },
     {
-      title: 'Enviar Plantilla',
+      title: 'Solicitar Servicio',
       dataIndex: '',
       key: 'uid',
       render: (text, record, index) => {
         const { telefono, datosExterno: { nombre, apellido } } = record;
         return <Button
           onClick={()=>onClickEnviarPlantilla(record)}
-        > Plantilla </Button>
+        > Solicitar Servicio </Button>
       }
     },
     {
