@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { startObtenerConversacion } from '../../store/slices/mensajes/thunks';
 import { Spin } from 'antd';
+import { startObtenerConversacion } from '../../store/slices/mensajes/thunks';
 import { ChatItem } from './ChatItem';
 import { DetalleContacto } from './datalleContacto/DetalleContacto';
 
@@ -12,7 +12,7 @@ export const ConversacionActual = () => {
   const {chats, loading } = useSelector(state => state.mensajesReducer);
   
   useEffect(() => {
-    dispatch(startObtenerConversacion(telefono));
+    dispatch(startObtenerConversacion(telefono, 10, {} ));
   }, []);
 
   if (loading) return <div style={{display:'flex', justifyContent:'center'}}><Spin /></div>

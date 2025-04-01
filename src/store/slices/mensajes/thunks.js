@@ -3,7 +3,7 @@ import { urlBase } from "../../../const/url";
 import { creaNotificacion } from "../../../utils/creaNotificacion";
 import { setDatosContacto } from "../contacto/contactoSlice";
 import { setNotificacion } from "../notificacion/notificiacionSlice";
-import { setConversacionActual, setLoading, setMensajeContext, setNumerosContacto } from "./mensajesSlice"
+import { setConversacionActual, setLoading, setMensajeContext, setMensajesAntiguos, setNumerosContacto } from "./mensajesSlice"
 
 export const startObtenerContactos = (contactos)=>{
   return async(dispatch) =>{
@@ -24,11 +24,12 @@ export const startObtenerContactosApi = ()=>{
   };
 };
 
-export const startObtenerConversacion = (telefono, uid) => {
+export const startObtenerConversacion = (telefono, numMensajes, limite) => {
   return async (dispatch) => {
     dispatch(setLoading(true));
-    const res = await fetch('post', `${urlBase}/api/datos/getChat`,{telefono, uid});
+    const res = await fetch('post', `${urlBase}/api/datos/getChat`,{telefono, numMensajes, limite});
     if (res.ok) {
+      console.log(res.data.mensajes);
       dispatch(setConversacionActual(res.data.mensajes));
       dispatch(setDatosContacto(res.data.datosExterno));
       dispatch(setNotificacion(creaNotificacion('success', 'Conversación cargada')));
@@ -54,5 +55,16 @@ export const startActualizarContacto =(form)=>{
     }else{
       dispatch(setNotificacion(creaNotificacion('error', 'No se actualizaron los datos')));
     }
+  };
+};
+
+export const startCargarMensajesAntiguos =(telefono, numMensajes, limite)=>{
+  return async (dispatch) => {
+    const res = await fetch('post', `${urlBase}/api/datos/getChat`,{telefono, numMensajes, limite});
+    if (res.ok) {
+      dispatch(setMensajesAntiguos(res.data.mensajes));
+    }else{
+      dispatch(setNotificacion(creaNotificacion('error', res.response.data.response)));
+    };
   };
 };

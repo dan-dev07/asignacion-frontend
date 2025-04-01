@@ -29,9 +29,12 @@ export const mensajesSlice = createSlice({
       setLoading:(state, {payload}) => {
         state.loading = payload;
       },
+      setMensajesAntiguos:(state, {payload}) => {
+        state.chats = [...payload, ...state.chats ];
+      },
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { setNumerosContacto, setGuardarMensajeEnviado, setMensajes, setMensajeContext, setNuevoMensajeRecibido, setConversacionActual, setLoading } = mensajesSlice.actions;
+export const { setNumerosContacto, setGuardarMensajeEnviado, setMensajes, setMensajeContext, setNuevoMensajeRecibido, setConversacionActual, setLoading, setMensajesAntiguos } = mensajesSlice.actions;

@@ -5,6 +5,7 @@ import { store } from './store/store';
 import { AppRouter } from './routes/AppRouter';
 
 export const App = () => {
+  
   return (
     <Provider store={store}>
       <SocketProvider>

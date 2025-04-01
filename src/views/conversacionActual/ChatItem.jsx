@@ -5,51 +5,82 @@ import { setMensajeRef } from '../../store/slices/buscarMensaje/buscarMensajeSli
 import { IncomingMessage } from './mostrarMensajes/IncomingMessage';
 import { OutgoingMessage } from './mostrarMensajes/OutgoingMessage';
 import { EnviarMensaje } from './enviarMensaje/EnviarMensaje';
+import { startCargarMensajesAntiguos, startObtenerConversacion } from '../../store/slices/mensajes/thunks';
+import { Button, Spin } from 'antd';
+import { fetch } from '../../api/api';
+import { urlBase } from '../../const/url';
+import { DoubleRightOutlined } from '@ant-design/icons';
 
-export const ChatItem = ({chats}) => {
+export const ChatItem = ({ chats }) => {
   const dispatch = useDispatch();
   const [localChat, setLocalChat] = useState(chats);
+  const [contador, setContador] = useState(2);
+  const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const messageRefs = useRef({});
-  const {telefono} = useParams();
-  const {mensajeRecibido} = useSelector(state => state.mensajesReducer);
+  const [contenedorRef, setContenedorRef] = useState(null);
+  const { telefono } = useParams();
+  const { mensajeRecibido } = useSelector(state => state.mensajesReducer);
 
   useEffect(() => {
     setLocalChat(chats);
-  }, [chats]);
+  }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
-  }, [localChat]);
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
     if (mensajeRecibido && mensajeRecibido.telefono === telefono) {
-      const {ultimo} = mensajeRecibido;
+      const { ultimo } = mensajeRecibido;
       setLocalChat(prevState => {
         const nuevoState = [...prevState, ultimo];
         return nuevoState;
       });
     };
   }, [mensajeRecibido]);
-  
+
   const handleMessageClick = (messageId) => {
     dispatch(setMensajeRef(messageId));
     if (messageRefs.current[messageId]) {
       messageRefs.actual = messageId;
       messageRefs.current[messageId].scrollIntoView({
-        behavior:'smooth',
-        block:'center',
+        behavior: 'smooth',
+        block: 'center',
       });
     };
     setTimeout(() => {
       dispatch(setMensajeRef(''));
     }, 2000);
   };
+
+  const mensajesAntiguos = async ()=>{
+    setLoading(true);
+    const numMensajes = 10 * contador;
+    const res = await fetch('post', `${urlBase}/api/Datos/getChat`, {telefono, numMensajes, limite:localChat[0]});
+    if (res.ok) {
+      setLocalChat(prev => {
+        const actChat = [...res.data.mensajes, ...prev];
+        return actChat;
+      });
+    };
+    setContador(prev => prev + 1);
+    setLoading(false);
+  };
   
   return (
     <>
-      <div className='chat-messages'>
-        { localChat && localChat?.map(msg => {
+      <Button 
+        style={{  rotate: '-90deg', width: '10px', marginBottom:'5px'}}
+        onClick={mensajesAntiguos}
+      >
+        <DoubleRightOutlined />
+      </Button>
+      {loading && <Spin />}
+      <div className='chat-messages'
+        ref={contenedorRef}
+      >
+        {localChat && localChat?.map(msg => {
           const messageId = msg._id;
           return (
             <div

@@ -10,7 +10,7 @@ import { CompartirArchivo } from '../Compartir';
 import { startGuardarMensajeContext } from '../../../store/slices/mensajes/thunks';
 import { ResponderMensaje } from '../modalOpciones/ResponderMensaje';
 
-export const EnviarMensaje = ({}) => {
+export const EnviarMensaje = ({messagesEndRef}) => {
   const dispatch = useDispatch();
   const { telefono } = useParams();
   const [mensaje, setMensaje] = useState('');
