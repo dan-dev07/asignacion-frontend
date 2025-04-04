@@ -13,7 +13,7 @@ import { DoubleRightOutlined } from '@ant-design/icons';
 export const ChatItem = ({ chats }) => {
   const dispatch = useDispatch();
   const [localChat, setLocalChat] = useState(chats);
-  const [pagina, setPagina] = useState(1);
+  const [pagina, setPagina] = useState(2);
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const messageRefs = useRef({});
@@ -68,8 +68,10 @@ export const ChatItem = ({ chats }) => {
         return actChat;
       });
     };
-    setPagina(prev => prev + 1);
     setLoading(false);
+    if (res.data.mensajes.length === 10) {
+      setPagina(prev => prev + 1);
+    };
   };
   
   return (
