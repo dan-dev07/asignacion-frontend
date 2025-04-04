@@ -24,12 +24,11 @@ export const startObtenerContactosApi = ()=>{
   };
 };
 
-export const startObtenerConversacion = (telefono, numMensajes, limite) => {
+export const startObtenerConversacion = (telefono, mensajesChatActual) => {
   return async (dispatch) => {
     dispatch(setLoading(true));
-    const res = await fetch('post', `${urlBase}/api/datos/getChat`,{telefono, numMensajes, limite});
+    const res = await fetch('post', `${urlBase}/api/datos/getChat`,{telefono, mensajesChatActual});
     if (res.ok) {
-      console.log(res.data.mensajes);
       dispatch(setConversacionActual(res.data.mensajes));
       dispatch(setDatosContacto(res.data.datosExterno));
       dispatch(setNotificacion(creaNotificacion('success', 'Conversación cargada')));

@@ -5,7 +5,6 @@ import { setMensajeRef } from '../../store/slices/buscarMensaje/buscarMensajeSli
 import { IncomingMessage } from './mostrarMensajes/IncomingMessage';
 import { OutgoingMessage } from './mostrarMensajes/OutgoingMessage';
 import { EnviarMensaje } from './enviarMensaje/EnviarMensaje';
-import { startCargarMensajesAntiguos, startObtenerConversacion } from '../../store/slices/mensajes/thunks';
 import { Button, Spin } from 'antd';
 import { fetch } from '../../api/api';
 import { urlBase } from '../../const/url';
@@ -14,7 +13,7 @@ import { DoubleRightOutlined } from '@ant-design/icons';
 export const ChatItem = ({ chats }) => {
   const dispatch = useDispatch();
   const [localChat, setLocalChat] = useState(chats);
-  const [contador, setContador] = useState(2);
+  const [pagina, setPagina] = useState(1);
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const messageRefs = useRef({});
@@ -56,15 +55,20 @@ export const ChatItem = ({ chats }) => {
 
   const mensajesAntiguos = async ()=>{
     setLoading(true);
-    const numMensajes = 10 * contador;
-    const res = await fetch('post', `${urlBase}/api/Datos/getChat`, {telefono, numMensajes, limite:localChat[0]});
+    const mensajesChatActual = { 
+      mensajeFinal: localChat[localChat.length - 1],
+      mensajeInicial: localChat[0],
+      mensajesTotales: localChat.length,
+      pagina
+    };
+    const res = await fetch('post', `${urlBase}/api/Datos/getChat`, {telefono, mensajesChatActual });
     if (res.ok) {
       setLocalChat(prev => {
         const actChat = [...res.data.mensajes, ...prev];
         return actChat;
       });
     };
-    setContador(prev => prev + 1);
+    setPagina(prev => prev + 1);
     setLoading(false);
   };
   

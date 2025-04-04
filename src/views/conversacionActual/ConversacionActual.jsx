@@ -12,7 +12,7 @@ export const ConversacionActual = () => {
   const {chats, loading } = useSelector(state => state.mensajesReducer);
   
   useEffect(() => {
-    dispatch(startObtenerConversacion(telefono, 10, {} ));
+    dispatch(startObtenerConversacion(telefono, {} ));
   }, []);
 
   if (loading) return <div style={{display:'flex', justifyContent:'center'}}><Spin /></div>

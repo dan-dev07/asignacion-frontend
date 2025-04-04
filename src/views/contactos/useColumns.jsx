@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { WechatFilled } from '@ant-design/icons';
+import { MessageOutlined, WechatFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import { SocketContext } from '../../context/SocketContext';
 import { setNotificacion } from '../../store/slices/notificacion/notificiacionSlice';
@@ -85,6 +85,7 @@ export const useColumns = () => {
       render: (text, record, index) =>
         <span >
           {record.mensaje}
+          {/* {!record.leido && record.emisor === 'Externo' && <sup><MessageOutlined size={5} /></sup>} */}
         </span>
     },
     {
